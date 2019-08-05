@@ -1,0 +1,20 @@
+---
+
+- name: Change host name
+  become: yes
+  hostname:
+    name: "{{ host_name }}"
+
+- name: Remove all the lines starting with 127.0.0.1 from /etc/hosts
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    state: absent
+
+- name: Add necessary lines starting with 127.0.0.1 to /etc/hosts
+  become: yes
+  lineinfile:
+    dest: /etc/hosts
+    line: "127.0.0.1 localhost {{ host_name }}"
+    state: present

@@ -1,0 +1,45 @@
+---
+
+all:
+  children:
+    masters:
+      hosts:
+        192.168.88.247:
+          host_name: rock64-1
+      vars:
+        kubernetes_role: master
+
+    nodes:
+      hosts:
+        192.168.88.248:
+          host_name: rock64-2
+        192.168.88.249:
+          host_name: rock64-3
+      vars:
+        kubernetes_role: node
+
+  vars:
+    # Enable passwordless sudo for rock64 user.
+    sudo_users:
+      - name: rock64
+        nopasswd: yes
+
+    # Docker architecture for apt.
+    docker_apt_arch: arm64
+
+    # Add rock64 to docker group.
+    docker_users:
+      - rock64
+
+    docker_install_compose: false
+    disable_swap: yes
+
+    # Enable Skip login buttin and disable settings authorization.
+    k8s_dashboard_args:
+      - --enable-skip-login
+      - --disable-settings-authorizer
+      - --auto-generate-certificates
+      - --namespace=kubernetes-dashboard
+
+    # Allow Kubernetes dashboard to manage all the resources.
+    k8s_dashboard_cluster_role: cluster-admin

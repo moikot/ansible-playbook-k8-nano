@@ -1,0 +1,15 @@
+---
+
+- name: Create directory {{ ansible_user_dir }}/.kube/ if it doesnt exist already
+  file:
+    path: "{{ ansible_user_dir }}/.kube/"
+    state: directory
+
+- name: Copy Kubernetes config file to {{ ansible_user_dir }}/.kube/config
+  become: yes
+  copy:
+    remote_src: yes
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ ansible_user_dir }}/.kube/config"
+    owner: "{{ ansible_user_uid | string }}"
+    group: "{{ ansible_user_gid | string }}"

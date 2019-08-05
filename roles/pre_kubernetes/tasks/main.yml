@@ -1,0 +1,9 @@
+---
+
+- name: Disable swap
+  include_tasks: disable_swap.yml
+  when: disable_swap | bool
+
+- name: Rename host
+  include_tasks: rename_host.yml
+  when: host_name is defined

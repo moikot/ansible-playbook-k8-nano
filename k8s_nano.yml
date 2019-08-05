@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+
+  roles:
+    - role: weareinteractive.sudo
+      become: yes
+
+    - role: geerlingguy.docker
+      become: yes
+
+    - pre_kubernetes
+
+    - role: geerlingguy.kubernetes
+      become: yes
+
+- hosts: masters
+
+  roles:
+    - kube_config
+    - moikot.k8s_dashboard

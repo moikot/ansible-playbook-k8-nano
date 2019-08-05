@@ -1,0 +1,22 @@
+---
+
+- name: Remove swapfile from /etc/fstab
+  become: yes
+  mount:
+    name: swap
+    fstype: swap
+    state: absent
+
+- name: Disable swap
+  become: yes
+  command: swapoff -a
+  when: ansible_swaptotal_mb is defined and ansible_swaptotal_mb > 0
+
+- name: Ensure zram-config is not present
+  become: yes
+  apt:
+    name:
+      - zram-config
+    state: absent
+    purge: yes
+  when: ansible_os_family == 'Debian'
