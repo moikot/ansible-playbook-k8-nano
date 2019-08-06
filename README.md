@@ -13,7 +13,7 @@ One or more Rock64 SBCs with Linux installed and accessible via SSH.
 Clone the repository and change the inventory file (`inventory/k8s_nano.yml`).
 
 ```shell
-get clone https://github.com/moikot/ansible-playbook-k8-nano.git
+git clone https://github.com/moikot/ansible-playbook-k8-nano.git
 cd ansible-playbook-k8-nano
 ```
 
