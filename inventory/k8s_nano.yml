@@ -27,14 +27,17 @@ all:
     # Docker architecture for apt.
     docker_apt_arch: arm64
 
+    # Supress docker-compose intallation.
+    docker_install_compose: false
+
     # Add rock64 to docker group.
     docker_users:
       - rock64
 
-    docker_install_compose: false
+    # Disable the swap on all the instances.
     disable_swap: yes
 
-    # Enable Skip login buttin and disable settings authorization.
+    # Enable Skip login button and disable settings authorization.
     k8s_dashboard_args:
       - --enable-skip-login
       - --disable-settings-authorizer
