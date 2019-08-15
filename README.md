@@ -25,7 +25,7 @@ docker run -it --rm -v ${PWD}:/ansible pad92/ansible-alpine \
   --user=rock64 --ask-pass --ask-become-pass
 ```
 
-Run using locally installed Ansible:
+or using a locally installed Ansible:
 
 ```shell
 ansible-galaxy install -r requirements.yml
