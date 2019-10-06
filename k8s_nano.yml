@@ -14,6 +14,11 @@
     - role: geerlingguy.kubernetes
       become: yes
 
+  pre_tasks:
+    - name: Update apt cache.
+      become: yes
+      apt: update_cache=yes cache_valid_time=600
+
 - hosts: masters
 
   roles:
