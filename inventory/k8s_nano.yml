@@ -19,6 +19,9 @@ all:
         kubernetes_role: node
 
   vars:
+    kubernetes_version: '1.16'
+    kubernetes_version_rhel_package: '1.16.0'
+
     # Enable passwordless sudo for rock64 user.
     sudo_users:
       - name: rock64
