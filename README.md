@@ -1,4 +1,4 @@
-# Ansible playbook for provisioning a Kubernetes nano-cluster
+# Ansible playbook for provisioning a Kubernetes cluster on Rock64 SBCs
 
 An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerlingguy/docker), [Kubernetes role](https://galaxy.ansible.com/geerlingguy/kubernetes), and [Kubernetes Dashboard role](https://galaxy.ansible.com/moikot/k8s_dashboard) to your nano-cluster.
 
@@ -35,7 +35,7 @@ ansible-playbook -i inventory k8s_nano.yml --user=rock64 --ask-pass --ask-become
 
 ## Inventory
 
-Inventory file resides in `inventory` folder and contains important information about the provisioning. Here is an example of provisioning a three nodes cluster using the computer with IP address `192.168.88.247` as a master.
+Inventory file resides in `inventory` folder and contains important information about the provisioning. Here is an example of provisioning a three node cluster using Rock64 with IP address `192.168.88.247` as a master.
 
 ```yaml
 all:
@@ -65,7 +65,7 @@ sudo_users:
     nopasswd: yes
 ```
 
-The provided inventory specifies the required Docker package architecture, suppresses `docker-compose` installation and adds `rock64` to the `docker` group.
+The provided inventory specifies required Docker package architecture, suppresses `docker-compose` installation, and adds `rock64` to the `docker` group.
 
 ```yaml
 docker_apt_arch: arm64
@@ -75,7 +75,7 @@ docker_users:
   - rock64
 ```
 
-In the defaul configuration the swap is disabled on all the instances using embedded role `pre_kuberntes`.
+In the default configuration, the swap is disabled on all the instances using embedded role `pre_kuberntes`.
 
 ```yaml
 disable_swap: yes
