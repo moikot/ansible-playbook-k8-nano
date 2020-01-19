@@ -83,7 +83,7 @@ disable_swap: yes
 
 Kubernetes Dashboard is installed with the `Skip` login button enabled and full access to the cluster resources.
 
-**IMPORTANT:** Please read [Access control](https://github.com/kubernetes/dashboard/wiki/Access-control) Wiki for more details.
+**IMPORTANT:** Please read [Access control](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/README.md) Wiki for more details.
 
 ```yaml
 # Enable Skip login button and disable settings authorization.
