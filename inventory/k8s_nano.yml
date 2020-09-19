@@ -4,23 +4,23 @@ all:
   children:
     masters:
       hosts:
-        192.168.88.247:
+        192.168.88.248:
           host_name: rock64-1
       vars:
         kubernetes_role: master
 
     nodes:
       hosts:
-        192.168.88.248:
-          host_name: rock64-2
         192.168.88.249:
+          host_name: rock64-2
+        192.168.88.250:
           host_name: rock64-3
       vars:
         kubernetes_role: node
 
   vars:
-    kubernetes_version: '1.16'
-    kubernetes_version_rhel_package: '1.16.0'
+    kubernetes_version: '1.18'
+    kubernetes_version_rhel_package: '1.18.0'
 
     # Enable passwordless sudo for rock64 user.
     sudo_users:
