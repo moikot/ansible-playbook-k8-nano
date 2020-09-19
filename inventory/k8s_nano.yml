@@ -39,13 +39,3 @@ all:
 
     # Disable the swap on all the instances.
     disable_swap: yes
-
-    # Enable Skip login button and disable settings authorization.
-    k8s_dashboard_args:
-      - --enable-skip-login
-      - --disable-settings-authorizer
-      - --auto-generate-certificates
-      - --namespace=kubernetes-dashboard
-
-    # Allow Kubernetes dashboard to manage all the resources.
-    k8s_dashboard_cluster_role: cluster-admin

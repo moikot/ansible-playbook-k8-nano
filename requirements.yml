@@ -3,4 +3,4 @@
 - src: weareinteractive.sudo
 - src: geerlingguy.docker
 - src: geerlingguy.kubernetes
-- src: moikot.k8s_dashboard
+-

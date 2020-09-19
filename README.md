@@ -1,6 +1,6 @@
 # Ansible playbook for provisioning a Kubernetes cluster on Rock64 SBCs
 
-An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerlingguy/docker), [Kubernetes role](https://galaxy.ansible.com/geerlingguy/kubernetes), and [Kubernetes Dashboard role](https://galaxy.ansible.com/moikot/k8s_dashboard) to your nano-cluster.
+An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerlingguy/docker), [Kubernetes role](https://galaxy.ansible.com/geerlingguy/kubernetes) to your nano-cluster.
 
 **NOTE:** This Ansible playbook intended to be used for home experiments only.
 
@@ -79,20 +79,4 @@ In the default configuration, the swap is disabled on all the instances using em
 
 ```yaml
 disable_swap: yes
-```
-
-Kubernetes Dashboard is installed with the `Skip` login button enabled and full access to the cluster resources.
-
-**IMPORTANT:** Please read [Access control](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/README.md) Wiki for more details.
-
-```yaml
-# Enable Skip login button and disable settings authorization.
-k8s_dashboard_args:
-  - --enable-skip-login
-  - --disable-settings-authorizer
-  - --auto-generate-certificates
-  - --namespace=kubernetes-dashboard
-
-# Allow Kubernetes dashboard to manage all the resources.
-k8s_dashboard_cluster_role: cluster-admin
 ```
