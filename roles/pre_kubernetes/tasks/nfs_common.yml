@@ -1,0 +1,7 @@
+---
+
+- name: Ensure nfs-common is present
+  become: yes
+  apt:
+    name: nfs-common
+    state: present

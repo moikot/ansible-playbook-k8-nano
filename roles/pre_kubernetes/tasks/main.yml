@@ -7,3 +7,6 @@
 - name: Rename host
   include_tasks: rename_host.yml
   when: host_name is defined
+
+- name: Add NFS common
+  include_tasks: nfs_common.yml
