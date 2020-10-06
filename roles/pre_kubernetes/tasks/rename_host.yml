@@ -5,16 +5,10 @@
   hostname:
     name: "{{ host_name }}"
 
-- name: Remove all the lines starting with 127.0.0.1 from /etc/hosts
+- name: Replace rock64 with the host name
   become: yes
-  lineinfile:
-    dest: /etc/hosts
-    regexp: '^127\.0\.0\.1'
-    state: absent
+  replace:
+    path: /etc/hosts
+    regexp: '^(127\.0\.[0|1]\.1).*'
+    replace: '\1 localhost {{ host_name }}'
 
-- name: Add necessary lines starting with 127.0.0.1 to /etc/hosts
-  become: yes
-  lineinfile:
-    dest: /etc/hosts
-    line: "127.0.0.1 localhost {{ host_name }}"
-    state: present
