@@ -1,0 +1,39 @@
+---
+
+- name: Set Docker daemon options
+  become: yes
+  copy:
+    dest: "/etc/docker/daemon.json"
+    content: |
+      {
+        "exec-opts": ["native.cgroupdriver=systemd"],
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "100m"
+        },
+        "storage-driver": "overlay2"
+      }
+
+- name: Enable container features
+  become: yes
+  replace:
+    path: /boot/firmware/cmdline.txt
+    regexp: '^([\w](?!.*\b{{ item }}\b).*)$'
+    replace: '\1 {{ item }}'
+  with_items:
+  - "cgroup_enable=cpuset"
+  - "cgroup_memory=1"
+  - "cgroup_enable=memory"
+  - "swapaccount=1"
+
+- name: Make bridged traffic visible
+  become: yes
+  copy:
+    dest: "/etc/sysctl.d/k8s.conf"
+    content: |
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.bridge.bridge-nf-call-iptables = 1
+
+- name: Reboot the machine
+  become: yes
+  reboot:

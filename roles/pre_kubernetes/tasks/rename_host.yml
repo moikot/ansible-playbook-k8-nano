@@ -1,11 +1,11 @@
 ---
 
-- name: Change host name
+- name: Change the host name
   become: yes
   hostname:
     name: "{{ host_name }}"
 
-- name: Replace rock64 with the host name
+- name: Change the host name
   become: yes
   replace:
     path: /etc/hosts

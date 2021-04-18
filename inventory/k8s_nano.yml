@@ -4,17 +4,17 @@ all:
   children:
     masters:
       hosts:
-        192.168.88.248:
-          host_name: rock64-1
+        192.168.88.217:
+          host_name: rpi4-1
       vars:
         kubernetes_role: master
 
     nodes:
       hosts:
-        192.168.88.249:
-          host_name: rock64-2
-        192.168.88.250:
-          host_name: rock64-3
+        192.168.88.218:
+          host_name: rpi4-2
+        192.168.88.219:
+          host_name: rpi4-3
       vars:
         kubernetes_role: node
 
@@ -22,9 +22,9 @@ all:
     kubernetes_version: '1.18'
     kubernetes_version_rhel_package: '1.18.0'
 
-    # Enable passwordless sudo for rock64 user.
+    # Enable passwordless sudo for ubuntu user.
     sudo_users:
-      - name: rock64
+      - name: ubuntu
         nopasswd: yes
 
     # Docker architecture for apt.
@@ -35,7 +35,7 @@ all:
 
     # Add rock64 to docker group.
     docker_users:
-      - rock64
+      - ubuntu
 
     # Disable the swap on all the instances.
     disable_swap: yes

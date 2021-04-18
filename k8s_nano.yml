@@ -2,6 +2,11 @@
 
 - hosts: all
 
+  pre_tasks:
+    - name: Update apt cache.
+      become: yes
+      apt: update_cache=yes cache_valid_time=600
+
   roles:
     - role: weareinteractive.sudo
       become: yes
@@ -13,11 +18,6 @@
 
     - role: geerlingguy.kubernetes
       become: yes
-
-  pre_tasks:
-    - name: Update apt cache.
-      become: yes
-      apt: update_cache=yes cache_valid_time=600
 
 - hosts: masters
 

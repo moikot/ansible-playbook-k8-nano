@@ -10,3 +10,6 @@
 
 - name: Add NFS common
   include_tasks: nfs_common.yml
+
+- name: Prepare Docker
+  include_tasks: prepare_docker.yml
