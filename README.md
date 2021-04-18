@@ -1,6 +1,6 @@
 # Ansible playbook for provisioning a Kubernetes cluster on a cluster of Raspberry Pi
 
-An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerlingguy/docker) and [Kubernetes role](https://galaxy.ansible.com/geerlingguy/kubernetes) to a cluster of [Rock64s](https://www.pine64.org/devices/single-board-computers/rock64/).
+An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerlingguy/docker) and [Kubernetes role](https://galaxy.ansible.com/geerlingguy/kubernetes) to a cluster of Raspberry Pi.
 
 **NOTE:** This Ansible playbook intended to be used for home clusters only.
 
@@ -18,17 +18,17 @@ Perform the following steps to provision a bare-metal Kubernetes cluster:
       ```bash
       docker run -it --rm -v ${PWD}:/ansible pad92/ansible-alpine \
         ansible-playbook -i inventory k8s_nano.yml \
-        --user=rock64 --ask-pass --ask-become-pass
+        --user=ubuntu --ask-pass --ask-become-pass
    ```
       b. Using a locally installed Ansible:
       ```bash
       ansible-galaxy install -r requirements.yml
       ansible-playbook -i inventory k8s_nano.yml \
-        --user=rock64 --ask-pass --ask-become-pass
+        --user=ubuntu --ask-pass --ask-become-pass
    ```
  6. When Ansible finishes provisioning your cluster, add kubectl context using metalogin utility:
 ```bash
-ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR rock64@[master IP address] \
+ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR ubuntu@[master IP address] \
   "sudo cat /etc/kubernetes/admin.conf" | \
   docker run -i --rm -v ~/.kube/:/kube moikot/metalogin -c /kube/config
 ```
@@ -37,7 +37,7 @@ ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR rock64@[master IP address] \
 
 ## Inventory
 
-The inventory file resides in `inventory` folder and contains essential information about the provisioning. Here is an example of provisioning a three-node cluster using Rock64 with IP address `192.168.88.247` as a master.
+The inventory file resides in `inventory` folder and contains essential information about the provisioning. Here is an example of provisioning a three-node cluster with IP address `192.168.88.247` assigned to the master node.
 
 ```yaml
 all:
@@ -59,7 +59,7 @@ all:
         kubernetes_role: node
 ```
 
-Enabling passwordless `sudo` for the rock64 user.
+Enabling passwordless `sudo` for the `ubuntu` user.
 
 ```yaml
 sudo_users:
