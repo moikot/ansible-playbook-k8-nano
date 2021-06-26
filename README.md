@@ -9,9 +9,9 @@ An Ansible playbook that applies [Docker role](https://galaxy.ansible.com/geerli
 You will need one or more Raspberry Pi single board computers connected to your home network.
 
 Perform the following steps to provision a bare-metal Kubernetes cluster:
-1.  Flash Ubuntu Server 20.10 to SD cards, install them to your SBCs, and boot them up.
+1. Flash Ubuntu Server 21.04 to SD cards, install them, and boot up.
 2. Log in to your router and make sure the IP addresses assigned to them are static and bound to MAC addresses.
-3. Log in to every Raspberry Pi via SSH  and change the default password. You have to use the same password for all of them to run the playbook.
+3. Log in to every Raspberry Pi via SSH and change the default password. You have to use the same password for all of them to run the playbook.
 4. Clone https://github.com/moikot/ansible-playbook-k8-nano and make changes in the k8s_nano.yml inventory file specifying IP addresses of the Kubernetes master and nodes.
 5. Navigate to the folder you cloned the playbook to and start the provisioning:
       a. Using Ansible in a Docker container:
@@ -26,7 +26,7 @@ Perform the following steps to provision a bare-metal Kubernetes cluster:
       ansible-playbook -i inventory k8s_nano.yml \
         --user=ubuntu --ask-pass --ask-become-pass
    ```
- 6. When Ansible finishes provisioning your cluster, add kubectl context using metalogin utility:
+ 6. When Ansible finishes provisioning your cluster, add kubectl context using [metalogin](https://github.com/moikot/metalogin) utility:
 ```bash
 ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR ubuntu@[master IP address] \
   "sudo cat /etc/kubernetes/admin.conf" | \
